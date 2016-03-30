@@ -22,6 +22,68 @@ private:
 	int num;				// numerator;
 	int denom;				// denominator;
 public:
-	Fraction(int n, int d) : num(n), denum(d) { };
+
+	Fraction(int n=0,int d =0,int j = 0){
+		num = n;
+		denom = d;
+	}
+
+	Fraction(int n, int d) : num(n), denom(d) { };
 	void print() { cout << num << "/" << denom; };
+
+	int getNum(){
+		return num;
+	}
+
+	int getDen(){
+		return denom;
+	}
+
+	void setNum(int nu){
+		num = nu;
+	}
+
+	void setDen(int de){
+		denom = de;
+	}
+
+
+	Fraction add(int n,Fraction f){
+		Fraction addf;
+		addf.setNum(f.getNum() + n*f.getDen());
+		addf.setDen(f.getDen());
+		return addf;
+	}
+
+	Fraction add(Fraction f,int n){
+		Fraction addf;
+		addf.setNum(f.getNum() + n*f.getDen());
+		addf.setDen(f.getDen());
+		return addf;
+	}
+
+	friend bool & operator>(const Fraction f1,const Fraction f2);
 };
+
+bool & operator>(const Fraction f1,const Fraction f2){
+	bool r = f1.num / f1.denom > f2.num / f2.denom;
+	return r;
+}
+
+int main(){
+	Fraction f1(2, 3, 0);
+	Fraction f2(1, 3, 0);
+
+	if (f1 > f2){
+		cout << "Wrong" << endl;
+	}
+	else{
+		cout << ":)" << endl;
+	}
+
+	Fraction addF,ans;
+	ans = addF.add(f1, 5);
+	ans.print();
+
+	return 0;
+}
